@@ -1,7 +1,6 @@
 package examen;
 
 import java.time.Instant;
-import java.time.LocalDate;
 
 public class Frais {
     private int id;
@@ -13,13 +12,17 @@ public class Frais {
         PAID,
         LATE,
         OVERPAID
-    }
+    };
+    private Status status;
+    
+    
 
-    public Frais (int id, String label, double montant, Instant deadline){
+    public Frais (int id, String label, double montant, Instant deadline, Status status){
         this.id=id;
         this.label=label;
         this.montant=montant;
         this.deadline=deadline;
+        this.status=status;
     }
 
     public int getId() {
@@ -35,15 +38,15 @@ public class Frais {
         return deadline;
     }
 
-    public void Status(Instant t){
-        if ((getDeadline().isBefore(t))&&(getMontant()<this.montant)) {
-            return ;
-        } else if (getMontant()==this.montant) {
-            return ;
-        } else if (getDeadline().isAfter(t)) {
-            return ;
+    public Status getStatus(){
+        if (()&&()) {
+            return status.IN_PROGRESS;
+        } else if (getMontant()==) {
+            return status.PAID;
+        } else if (getDeadline().isAfter(deadline)) {
+            return status.OVERPAID;
         } else if (getMontant()>this.montant) {
-            return ;
+            return status.LATE;
         }
     }
 }
