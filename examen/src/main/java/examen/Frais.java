@@ -1,14 +1,21 @@
 package examen;
 
+import java.time.Instant;
 import java.time.LocalDate;
 
 public class Frais {
     private int id;
     private String label;
     private double montant;
-    private LocalDate deadline;
+    private Instant deadline;
+    public enum Status{
+        IN_PROGRESS,
+        PAID,
+        LATE,
+        OVERPAID
+    }
 
-    public Frais (int id, String label, double montant, LocalDate deadline){
+    public Frais (int id, String label, double montant, Instant deadline){
         this.id=id;
         this.label=label;
         this.montant=montant;
@@ -24,7 +31,19 @@ public class Frais {
     public String getLabel() {
         return label;
     }
-    public LocalDate getDeadline() {
+    public Instant getDeadline() {
         return deadline;
+    }
+
+    public void Status(Instant t){
+        if ((getDeadline().isBefore(t))&&(getMontant()<this.montant)) {
+            return ;
+        } else if (getMontant()==this.montant) {
+            return ;
+        } else if (getDeadline().isAfter(t)) {
+            return ;
+        } else if (getMontant()>this.montant) {
+            return ;
+        }
     }
 }
